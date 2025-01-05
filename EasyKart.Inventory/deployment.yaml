@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: easy-kart-inventory
+  namespace: easy-kart
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: easy-kart-inventory #This should be same label
+  template:
+    metadata:
+      labels:
+        app: easy-kart-inventory #This should be same label
+    spec:
+      containers:
+      - name: easy-kart-inventory
+        image: pdesaidocker/easy-kart-api-inventory:{{imageTag}}
+        ports:
+        - containerPort: 8080 #port defined in image dockerfile
+        env:
+        - name: CosmosDB__endpoint
+          valueFrom:
+            configMapKeyRef:
+              name: easy-kart-inventory-config-map # ConfigMap name
+              key: endpoint         # Key in the ConfigMap
+        - name: CosmosDB__authKey
+          valueFrom:
+            configMapKeyRef:
+              name: easy-kart-inventory-config-map
+              key: authKey
+        - name: CosmosDB__databaseId
+          valueFrom:
+            configMapKeyRef:
+              name: easy-kart-inventory-config-map
+              key: databaseId
+        - name: CosmosDB__containerId
+          valueFrom:
+            configMapKeyRef:
+              name: easy-kart-inventory-config-map
+              key: containerId
+        - name: CosmosDB__partitionKey
+          valueFrom:
+            configMapKeyRef:
+              name: easy-kart-inventory-config-map
+              key: partitionKey
+        - name: ConnectionStrings__AzureServiceBus
+          valueFrom:
+            configMapKeyRef:
+              name: easy-kart-inventory-config-map
+              key: azservicebusconn

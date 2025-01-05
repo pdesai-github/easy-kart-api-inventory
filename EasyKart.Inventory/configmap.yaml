@@ -9,4 +9,4 @@ data:
   databaseId: "easy-kart"
   containerId: "Inventory"
   partitionKey: "/productId"
-  azservicebusconn: "Endpoint=sb://easy-kart.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=WCs7zuM70gjmWCFu96yrYh2Aki41FLjXq+ASbMd1Otg="
+  azservicebusconn: ""

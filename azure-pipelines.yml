@@ -60,14 +60,14 @@ stages:
     - task: Kubernetes@1
       displayName: Apply deployment.yaml
       inputs:
-        kubernetesServiceEndpoint: 'aks-service-conn'
+        kubernetesServiceEndpoint: 'az-k8s-easy-kart'
         namespace: 'easy-kart'
         command: 'apply'
         arguments: '-f EasyKart.Inventory/deployment.yaml'
     - task: Kubernetes@1
       displayName: Apply services.yaml
       inputs:
-        kubernetesServiceEndpoint: 'aks-service-conn'
+        kubernetesServiceEndpoint: 'az-k8s-easy-kart'
         namespace: 'easy-kart'
         command: 'apply'
         arguments: '-f EasyKart.Inventory/services.yaml'
